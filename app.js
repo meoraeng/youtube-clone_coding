@@ -11,9 +11,7 @@ import globalRouter from "./routers/globalRouter";
 import routes from "./routes";
 
 
- const app = express();
-
-
+const app = express();
 
 
 //function 도 arrow function + const 꼴로 바꿔줌
@@ -28,6 +26,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(helmet());
 app.use(morgan("dev"));
 
+//어차피 각  router 파일 들에서 get요청에 대한 res 설정은 이미 다 되어있으니, 이미 정의된 그 로직을 사용하기 위해 use를 쓰는거같음
 app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter); // use의 의미 -> 누군가 /user 경로로 접속하면 이 router 전체를 사용하겠다는 의미 , 미들웨어 전역에 사용한 use는 url을 안받았음
 app.use(routes.videos, videoRouter);
