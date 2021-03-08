@@ -8,11 +8,11 @@ const LOGIN = "/login";
 const LOGOUT = "/logout";
 const SEARCH = "/search";
 
-
+ 
 //Users
 
 const USERS = "/users";
-const USER_DETAIL = "/:id"; // :id 는 변하는 값이구나를 express가 알아차림
+const USER_DETAIL = "/:id"; // :id 는 id가 변하는 값이라는걸 express가 알아차림
 const EDIT_PROFILE = "/edit-profile";
 const CHANGE_PASSWORD = "/change-password";
 
