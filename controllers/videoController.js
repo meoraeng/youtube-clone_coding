@@ -1,5 +1,8 @@
 //home의 video 관련 기능들
-export const home = (req,res) => res.render("home",{pageTitle: 'Home'}); // home 컨트롤러
+import {videos} from "../db"
+export const home = (req,res) => {
+    res.render("home",{pageTitle: 'Home', videos});
+} // home 컨트롤러
 export const search = (req,res) => {
     const {
         query: {term: searchingBy}
@@ -9,7 +12,6 @@ export const search = (req,res) => {
 
 
 //video Rotuer 
-export const videos = (req,res) => res.render("videos",{pageTitle:"Videos"});
 export const upload = (req,res) => res.render("upload",{pageTitle:"Upload Video"});
 export const videoDetail = (req,res) => res.render("videoDetail", {pageTitle:"Video Deatil"});
 export const editVideo = (req,res) => res.render("editVideo", {pageTitle:"Edit Video"});
