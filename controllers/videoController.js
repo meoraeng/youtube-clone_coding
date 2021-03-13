@@ -1,6 +1,11 @@
 //home의 video 관련 기능들
 export const home = (req,res) => res.render("home",{pageTitle: 'Home'}); // home 컨트롤러
-export const search = (req,res) => res.render("search",{pageTitle: 'Search'}); 
+export const search = (req,res) => {
+    const {
+        query: {term: searchingBy}
+    } = req; // const searchingBy = req.query.term을 한 것과 같음
+    res.render("search",{pageTitle: 'Search', searchingBy});
+}
 
 
 //video Rotuer 
