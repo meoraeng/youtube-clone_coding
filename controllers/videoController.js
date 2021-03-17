@@ -1,5 +1,4 @@
 //home의 video 관련 기능들
-import {videos} from "../db";
 import routes from "../routes"; //default 로 export한 것을 import할때는 {}없이
 
 
