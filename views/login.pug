@@ -3,7 +3,7 @@ extends layouts/main.pug
 block content
     .form-container
         form(action=routes.login, method="post")
-            input(type="email", name="email", placeholder="email")
-            input(type="password", name="password", placeholder="Password")
-            input(type="submit", value="Log In")
+            input(type="email", name="email", placeholder="email", required=true)
+            input(type="password", name="password", placeholder="Password", required=true)
+            input(type="submit", value="Log In", required=true)
         include partials/socialLogin

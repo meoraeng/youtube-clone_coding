@@ -1,6 +1,11 @@
 import express from "express";
-import { changePassword, editProfile, userDetail, users } from '../controllers/userController';
 import routes from "../routes";
+import { 
+    changePassword, 
+    editProfile, 
+    userDetail, 
+    users 
+} from '../controllers/userController';
 
 
 const userRouter = express.Router();
@@ -11,7 +16,8 @@ const userRouter = express.Router();
 userRouter.get(routes.users ,users);
 userRouter.get(routes.editProfile, editProfile);
 userRouter.get(routes.changePassword, changePassword);
-userRouter.get(routes.userDetail, userDetail);
-
+userRouter.get(routes.userDetail(), userDetail);
+//아 이상하더라... 여기선 그냥 콜백으로 실행시키고 
+//템플릿에서는 locals에 있는 user의 id값을 인수로 넘기도록하는구나
 
 export default userRouter
