@@ -1,9 +1,15 @@
 //home의 video 관련 기능들
 import routes from "../routes"; //default 로 export한 것을 import할때는 {}없이
+import Video from "../models/Video";
 
-
-export const home = (req,res) => {
-    res.render("home",{pageTitle: 'Home', videos});
+export const home = async(req,res) => { //니코ver. async/await설명 이해부족 
+    try{ 
+        const videos = await Video.find({}); // find() 랑 ({})차이는 뭘까
+        res.render("home",{pageTitle: 'Home', videos}); 
+    } catch (error){
+        console.log(error);
+        res.render("home", {pageTitle: 'Home', videos: []});
+    }
 } // home 컨트롤러
 export const search = (req,res) => {
     const {
