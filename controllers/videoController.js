@@ -4,7 +4,7 @@ import Video from "../models/Video";
 
 export const home = async(req,res) => { //니코ver. async/await설명 이해부족 
     try{ 
-        const videos = await Video.find({}); // find() 랑 ({})차이는 뭘까
+        const videos = await Video.find({}).sort({'_id':-1}); // find() 랑 ({})차이는 뭘까
         //home에 접근시
         res.render("home",{pageTitle: 'Home', videos}); 
     } catch (error){
@@ -34,7 +34,6 @@ export const postUpload = async(req,res) => {
         title,
         description
     }); //post요청을 받아 새 비디오를 만듬
-    console.log(newVideo);
     res.redirect(routes.videoDetail(newVideo.id)); 
 }
 
@@ -45,7 +44,7 @@ export const videoDetail = async(req,res) => {
     } =req;
     try{
     const video = await Video.findById(id);
-    res.render("videoDetail", {pageTitle:"Video Deatil" ,video});//video == video:video와 같음
+    res.render("videoDetail", {pageTitle: video.title ,video});//video == video:video와 같음
     }catch(error){
         res.redirect(routes.home);
     }
@@ -68,10 +67,20 @@ export const postEditVideo = async(req,res) => {
     } = req;
     try{ //그냥 업데이트하는걸로 끝나지, 저장을 하진 않음 
         await Video.findOneAndUpdate({_id:id}, {title,description});
-        res.redirect(rotues.videoDetail(id));
+        res.redirect(routes.videoDetail(id));
     }catch(error){
         res.redirect(routes.home);
     }
 }
-export const deleteVideo = (req,res) => res.render("deleteVideo", {pageTitle:"Delete Video"});
+export const deleteVideo = async(req,res) => {
+    const {
+        params: {id}
+    } = req;
+    try{
+        await Video.findOneAndRemove({_id:id});
+    }catch(error){
+        console.log(error);
+    }
+    res.redirect(routes.home);
+}
 
