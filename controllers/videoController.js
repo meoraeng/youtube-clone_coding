@@ -50,6 +50,28 @@ export const videoDetail = async(req,res) => {
         res.redirect(routes.home);
     }
 }
-export const editVideo = (req,res) => res.render("editVideo", {pageTitle:"Edit Video"});
+export const getEditVideo = async(req,res) => {
+    const {
+        params: {id}
+    } = req;
+    try {
+        const video=await Video.findById(id);
+        res.render("editVideo", {pageTitle: `Edit ${video.title}`,video})
+    }catch(error){//id로 비디오를 찾지 못하면 존재않는 비디오를 수정한단뜻이니
+        res.redirect(routes.home); //홈으로 보냄
+    }
+}
+export const postEditVideo = async(req,res) => {
+    const {
+        params: {id},
+        body: {title, description}
+    } = req;
+    try{ //그냥 업데이트하는걸로 끝나지, 저장을 하진 않음 
+        await Video.findOneAndUpdate({id}, {title,description});
+        res.redirect(rotues.videoDetail(id));
+    }catch(error){
+        res.redirect(routes.home);
+    }
+}
 export const deleteVideo = (req,res) => res.render("deleteVideo", {pageTitle:"Delete Video"});
 
