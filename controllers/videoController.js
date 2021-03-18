@@ -67,7 +67,7 @@ export const postEditVideo = async(req,res) => {
         body: {title, description}
     } = req;
     try{ //그냥 업데이트하는걸로 끝나지, 저장을 하진 않음 
-        await Video.findOneAndUpdate({id}, {title,description});
+        await Video.findOneAndUpdate({_id:id}, {title,description});
         res.redirect(rotues.videoDetail(id));
     }catch(error){
         res.redirect(routes.home);
