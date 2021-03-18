@@ -1,7 +1,9 @@
 import routes from './routes';
 import multer from 'multer';
 
-const multerVideo = multer({dest:'videos/'}); // dest -> destination
+const multerVideo = multer({dest:'uploads/videos/'}); // dest -> destination
+//dest로 설정하면 자동으로 폴더가 만들어진다 ㄷㄷ 개신기해
+
 
 export const localsMiddleware = (req,res,next) => {
     res.locals.siteName = "Jotubue";
