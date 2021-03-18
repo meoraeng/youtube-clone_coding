@@ -1,4 +1,7 @@
 import routes from './routes';
+import multer from 'multer';
+
+const multerVideo = multer({dest:'videos/'}); // dest -> destination
 
 export const localsMiddleware = (req,res,next) => {
     res.locals.siteName = "Jotubue";
@@ -10,3 +13,6 @@ export const localsMiddleware = (req,res,next) => {
     next();
 };
 
+
+export const uploadVideo = multerVideo.single('videoFile');//하나의 파일만 업로드 가능하다는 것을 의미
+//name part는(single 인수 스트링) html feild의 name이다

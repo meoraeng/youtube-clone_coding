@@ -5,6 +5,7 @@ import Video from "../models/Video";
 export const home = async(req,res) => { //니코ver. async/await설명 이해부족 
     try{ 
         const videos = await Video.find({}); // find() 랑 ({})차이는 뭘까
+        //home에 접근시
         res.render("home",{pageTitle: 'Home', videos}); 
     } catch (error){
         console.log(error);
@@ -23,13 +24,18 @@ export const search = (req,res) => {
 export const getUpload = (req,res) => {
     res.render("upload",{pageTitle:"Upload Video"});
 }
-export const postUpload = (req,res) => {
+export const postUpload = async(req,res) => {
     const {
-        body: {file, title, description}
-    } = req; // req.body의 title, file, description 값을 가져와서 임시로 저장한다
-    // To Do : DB에 video 업로드하고 저장
-    res.redirect(routes.videoDetail(123393)); 
-    //임시방편으로 가짜 id를 보내줌 업로드 기능이 아직 없으니 업로드한 파일의 id로 만드는게 불가능
+        body: { title, description},  //사용자가 업로드한 파일의 정보
+        file: { path }
+    } = req; // req.body의 title,description 값을 가져와서 저장, file은 이제 필요없음
+    const newVideo = await Video.create({
+        fileUrl: path, //사용자가 업로드한 정보를 토대로 새로 만드는 비디오스키마
+        title,
+        description
+    }); //post요청을 받아 새 비디오를 만듬
+    console.log(newVideo);
+    res.redirect(routes.videoDetail(newVideo.id)); 
 }
 
 
