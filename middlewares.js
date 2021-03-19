@@ -1,5 +1,5 @@
-import routes from './routes';
 import multer from 'multer';
+import routes from './routes';
 
 const multerVideo = multer({dest:'uploads/videos/'}); // dest -> destination
 //dest로 설정하면 자동으로 폴더가 만들어진다 ㄷㄷ 개신기해

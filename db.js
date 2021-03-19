@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+
 dotenv.config(); // 이 메소드의 역할은 뭘까
 
 mongoose.connect( // 이건 내 JS랑 DB를 연결시켜주는 역할같고
