@@ -22,7 +22,8 @@ app.use(function(req, res, next) {
 
 app.use( helmet({ contentSecurityPolicy: false }))//동영상이 안나와서 댓글따라 설정 바꿈
 app.set("view engine","pug"); // app.set ?
-app.use("/uploads", express.static('uploads'));
+app.use("/uploads", express.static('uploads')); //express.static이 뭐지?
+app.use('/static', express.static('static'));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
