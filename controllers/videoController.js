@@ -12,11 +12,20 @@ export const home = async(req,res) => { //니코ver. async/await설명 이해부
         res.render("home", {pageTitle: 'Home', videos: []});
     }
 } // home 컨트롤러
-export const search = (req,res) => {
+export const search = async(req,res) => {
     const {
         query: {term: searchingBy}
     } = req; // const searchingBy = req.query.term을 한 것과 같음
-    res.render("search",{pageTitle: 'Search', searchingBy, videos });
+    let videos = [];
+   try{
+    videos = await Video.find({
+        title:{$regex: searchingBy, $options: "i"}
+    });
+   }//매우 많은 find 옵션이있다
+   catch(error){
+    console.log(error);
+   };
+   res.render("search",{pageTitle: 'Search', searchingBy, videos});
 }
 
 
