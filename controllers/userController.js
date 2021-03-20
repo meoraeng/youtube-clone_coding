@@ -1,12 +1,12 @@
 //컨트롤러는 어떤 일이 어떻게 발생하는지에 관한 로직
-
 import routes from '../routes';
+import User from "../models/User";
 
 //global Router의 user 관련 기능 contorller
 export const getJoin = (req, res) => {
     res.render('join',{pageTitle:"Join"}) ;
 };
-export const postJoin= (req,res) => {
+export const postJoin= async(req,res) => {
     const {
         body: {name, email, password, password2}
     } =req;
@@ -14,8 +14,14 @@ export const postJoin= (req,res) => {
         res.status(400);
         res.render("join", { pageTitle: "Join"});
     } else{
-        //사용자 등록 구현해야함 -> DB에 정보 기록
-        //사용자 로그인도 구현해야함 -> 로그인 상태 체크
+        try{const user = await User({
+          name,
+          email
+        });
+          await User.register(user, password);
+        } catch (error){
+          console.log(error);
+        }
         res.redirect(routes.home);
     }
 }
