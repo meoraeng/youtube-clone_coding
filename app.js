@@ -15,9 +15,9 @@ import routes from "./routes";
 
 import "./passport";
 
-
 const app = express();
 
+const MongoStore = require("connect-mongo");
 
 app.use(function(req, res, next) {
     res.setHeader("Content-Security-Policy", "script-src 'self' https://archive.org");
@@ -36,7 +36,8 @@ app.use(morgan("dev"));
 app.use(session({
   secret: process.env.COOKIE_SECRET,
   resave: true,
-  saveUninitialized: false
+  saveUninitialized: false,
+  store: MongoStore.create({mongoUrl: process.env.MONGO_URL})
 }));
 app.use(passport.initialize());
 app.use(passport.session());
