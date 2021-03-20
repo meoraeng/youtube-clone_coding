@@ -5,14 +5,19 @@ import morgan from "morgan";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
+import passport from "passport";
+import session from "express-session";
 import { localsMiddleware } from './middlewares';
 import userRouter from "./routers/userRouter"; // default로 export하지 않으면 이렇게 import해줘야함
 import videoRouter from "./routers/videoRouter";
 import globalRouter from "./routers/globalRouter";
 import routes from "./routes";
 
+import "./passport";
+
 
 const app = express();
+
 
 app.use(function(req, res, next) {
     res.setHeader("Content-Security-Policy", "script-src 'self' https://archive.org");
@@ -28,6 +33,13 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(morgan("dev"));
+app.use(session({
+  secret: process.env.COOKIE_SECRET,
+  resave: true,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 //어차피 각  router 파일 들에서 get요청에 대한 res 설정은 이미 다 되어있으니, 이미 정의된 그 로직을 미들웨어로서(?) 사용하기 위해 use를 쓰는거같음
 
 

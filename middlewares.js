@@ -8,10 +8,8 @@ const multerVideo = multer({dest:'uploads/videos/'}); // dest -> destination
 export const localsMiddleware = (req,res,next) => {
     res.locals.siteName = "Jotubue";
     res.locals.routes = routes; //routes.js 의 routes 객체를 가져옴
-    res.locals.user = {
-        isAuthenticated: false,
-        id: 1
-    }
+    res.locals.user = req.user || null;
+    console.log(req.user);
     next();
 };
 
