@@ -34,9 +34,33 @@ export const postLogin = passport.authenticate('local',{
   failureRedirect: routes.login,
   successRedirect: routes.home
 })
+export const githubLogin = passport.authenticate('github');
 
+export const githubLoginCallback = async (_, __, profile, cb) => {
+  const {_json: {id, avatar_url, name, email} } = profile;
+  try{
+    const user = await User.findOne({email});
+    if(user){
+      user.githubId = id;
+      user.save();
+      return cb(null, user); //쿠키에 저장하게됨
+    }
+    const newUser= await User.create({
+      email,
+      name,
+      githubId: id,
+      avatarUrl: avatar_url
+    });
+    return cb(null, newUser);
+  }catch(error){
+    return cb(error);
+  }
+}
+export const postGithubLogIn = (req,res) => {
+  res.redirect(routes.home);
+}
 export const logout = (req, res) => {
-    //로그아웃 처리 시켜줘야함 -> 로그인 해제 후 비로그인 상태 체크
+    req.logout();
     res.redirect(routes.home);
 }
 
@@ -45,3 +69,5 @@ export const users = (req,res) => res.render('users',{pageTitle:"Users"});
 export const userDetail = (req,res) => res.render("userDetail",{pageTitle:"User Detail"});
 export const editProfile = (req,res) => res.render("editProfile",{pageTitle:"Edit Profile"});
 export const changePassword = (req,res) => res.render("changePassword",{pageTitle:"Change Password"});
+
+
