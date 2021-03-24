@@ -57,14 +57,43 @@ export const githubLoginCallback = async (_, __, profile, cb) => {
   }catch(error){
     return cb(error);
   }
-}
+};
 export const postGithubLogIn = (req,res) => {
   res.redirect(routes.home);
+};
+
+export const facebookLogin = passport.authenticate('facebook');
+
+export const facebookLoginCallback = async(accessToken,__,profile,cb) => {
+  const {_json: {id, name, email}} = profile;
+  try{
+    const user = await User.findOne({email});
+    if(user){
+      user.facebookId = id;
+      user.name = name; 
+      user.avatarUrl = `https://graph.facebook.com/${id}/picture?type=large&access_token=${accessToken}`
+      user.save();
+      return cb(null, user); //쿠키에 저장하게됨
+    }
+    const newUser= await User.create({
+      email,
+      name,
+      facebookId: id,
+      avatarUrl: `https://graph.facebook.com/${id}/picture?type=large&access_token=${accessToken}`
+    });
+    return cb(null,user);
+  }catch(error){
+    return cb(error);
+  }
 }
+export const postFacebookLogIn = (req,res) => {
+  res.redirect(routes.home);
+}
+
 export const logout = (req, res) => {
     req.logout();
     res.redirect(routes.home);
-}
+};
 
 //user Router
 export const getMe = (req,res) => {
@@ -72,7 +101,15 @@ export const getMe = (req,res) => {
 };
 
 export const users = (req,res) => res.render('users',{pageTitle:"Users"});
-export const userDetail = (req,res) => res.render("userDetail",{pageTitle:"User Detail"});
+export const userDetail = async (req,res) =>{
+  const { params : { id }} =req; 
+  try{
+    const user =  await User.findById(id);
+    res.render("userDetail",{pageTitle:"User Detail", user});
+  }catch(error) {
+    res.redirect(routes.home);
+  }
+}
 export const editProfile = (req,res) => res.render("editProfile",{pageTitle:"Edit Profile"});
 export const changePassword = (req,res) => res.render("changePassword",{pageTitle:"Change Password"});
 

@@ -9,7 +9,9 @@ import {
     logout, 
     githubLogin,
     postGithubLogIn,
-    getMe
+    getMe,
+    facebookLogin,
+    postFacebookLogIn
 } from '../controllers/userController';
 import routes from "../routes"; //모든 route 값을 통일시켜서 모아둔 routes를 임포트해온다음, 각 router들에 맞는 route를 get받았을때 어떤 응답을 할건지 목적에 맞게 작성
 import { onlyPrivate, onlyPublic } from '../middlewares';
@@ -33,8 +35,15 @@ globalRouter.get(routes.search, search) //훨씬 정돈되어있음
 globalRouter.get(routes.github, githubLogin);
 globalRouter.get(
   routes.githubCallback, 
-  passport.authenticate('github', {failureRedirect: routes.login}),postGithubLogIn
+  passport.authenticate('github', {failureRedirect: routes.login}),
+  postGithubLogIn
 );
+globalRouter.get(routes.facebook, facebookLogin);
+globalRouter.get(
+  routes.facebookCallback,
+  passport.authenticate('facebook', {failureRedirect: routes.login}),
+  postFacebookLogIn
+)
 globalRouter.get(routes.me, getMe);
 export default globalRouter;
 

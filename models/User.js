@@ -6,7 +6,7 @@ const UserSchema = new mongoose.Schema({
   name: String,
   email:String,
   avatarUrl: String,
-  facebbokId: Number,
+  facebookId: Number,
   githubId:Number
 });
 //스키마에 플러그인 추가를 돕는 메소드가 있네
