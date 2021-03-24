@@ -37,11 +37,13 @@ export const postLogin = passport.authenticate('local',{
 export const githubLogin = passport.authenticate('github');
 
 export const githubLoginCallback = async (_, __, profile, cb) => {
-  const {_json: {id, avatar_url, name, email} } = profile;
+  const {_json: {id, avatar_url:avatarUrl, name, email} } = profile;
   try{
     const user = await User.findOne({email});
     if(user){
       user.githubId = id;
+      user.avatarUrl = avatarUrl;
+      user.name = name; //이름까지 깃허브 정보로 갱신되게 하는게 맞는걸까?
       user.save();
       return cb(null, user); //쿠키에 저장하게됨
     }
@@ -49,7 +51,7 @@ export const githubLoginCallback = async (_, __, profile, cb) => {
       email,
       name,
       githubId: id,
-      avatarUrl: avatar_url
+      avatarUrl
     });
     return cb(null, newUser);
   }catch(error){
@@ -65,6 +67,10 @@ export const logout = (req, res) => {
 }
 
 //user Router
+export const getMe = (req,res) => {
+  res.render("userDetail",{pageTitle:"User Detail", user: req.user});
+};
+
 export const users = (req,res) => res.render('users',{pageTitle:"Users"});
 export const userDetail = (req,res) => res.render("userDetail",{pageTitle:"User Detail"});
 export const editProfile = (req,res) => res.render("editProfile",{pageTitle:"Edit Profile"});

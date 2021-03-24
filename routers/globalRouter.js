@@ -8,7 +8,8 @@ import {
     postLogin, 
     logout, 
     githubLogin,
-    postGithubLogIn
+    postGithubLogIn,
+    getMe
 } from '../controllers/userController';
 import routes from "../routes"; //모든 route 값을 통일시켜서 모아둔 routes를 임포트해온다음, 각 router들에 맞는 route를 get받았을때 어떤 응답을 할건지 목적에 맞게 작성
 import { onlyPrivate, onlyPublic } from '../middlewares';
@@ -34,6 +35,7 @@ globalRouter.get(
   routes.githubCallback, 
   passport.authenticate('github', {failureRedirect: routes.login}),postGithubLogIn
 );
+globalRouter.get(routes.me, getMe);
 export default globalRouter;
 
 //유일하게 독점적으로 url을 다루는건 globalRouter,  나머지 함수들과는 상관이 없음
