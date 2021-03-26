@@ -34,7 +34,9 @@ passport.use(
 passport.serializeUser(function(user, done) {
   done(null,user);
 });
-passport.deserializeUser(function(user,done){
-  done(null,user);
+passport.deserializeUser(function(id, done){
+  User.findById(id, function(err, user){ //유저 프로필 수정 오류땜에 추가했는데, 이게 문제가 아니었음 근데 추가해뒀으니 일단 이대로 진행
+  done(err, user);
+  });
 });
 //전 세계 모든 이들이 이와 같은 함수를 실행함

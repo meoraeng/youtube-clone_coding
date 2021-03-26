@@ -38,7 +38,7 @@
     "pug": "^3.0.2"
   },
   "scripts": {
-    "dev:server": "nodemon --exec babel-node init.js --delay 2 --ignore 'scss'",
+    "dev:server": "nodemon --exec babel-node init.js --delay 2 --ignore 'scss' --ignore 'static' ",
     "dev:assets": "cross-env WEBPACK_ENV=development webpack -w",
     "build:assets": "cross-env WEBPACK_ENV=production webpack",
     "ngrok":"ngrok http 4000 1qDVJSwXGNEyjAGQHf9IbLPdiV7_ovyXvQBfsPoJGdCmM3g"
