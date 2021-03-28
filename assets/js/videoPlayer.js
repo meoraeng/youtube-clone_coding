@@ -7,6 +7,12 @@ const currentTime = document.getElementById("currentTime");
 const totalTime  = document.getElementById("totalTime");
 const volumeRange = document.getElementById("jsVolume");
 
+const registerView = () => {
+  const videoId = window.location.href.split("/videos/")[1];
+  fetch(`/api/${videoId}/view`, {
+    method: "POST"
+  })
+}
 function handlePlayClick(){
   if(videoPlayer.paused){
     videoPlayer.play();
@@ -95,6 +101,7 @@ function setTotalTime(){
   videoPlayer.addEventListener("timeupdate", getCurrentTime);//동영상 재생시간이면 1초마다 4~5번씩 이벤트함수를 호출함
 }
 function handleEnded(){
+  registerView();
   videoPlayer.currenTime = 0;
   playBtn.innerHTML = '<i class="fas fa-play"></i>';
 }

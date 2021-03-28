@@ -11,6 +11,7 @@ import { localsMiddleware } from './middlewares';
 import userRouter from "./routers/userRouter"; // default로 export하지 않으면 이렇게 import해줘야함
 import videoRouter from "./routers/videoRouter";
 import globalRouter from "./routers/globalRouter";
+import apiRouter from './routers/apiRouter';
 import routes from "./routes";
 
 import "./passport";
@@ -47,7 +48,8 @@ app.use(passport.session());
 app.use(localsMiddleware);
 app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter); 
-// use의 의미 -> 누군가 /user 경로로 접속하면 이 userRouter파일의 값을 사용하겠다는 의미 , 전역으로 쓰이는 미들웨어로 사용하는 use는 url을 안받았음, 여기서 설정한 주소값 + Router페이지의 요청메소드에 대한 라우팅 주소값을 합쳐서 user/(userRouter의 라우팅 주소값) 형태로 라우팅을 연결한다
 app.use(routes.videos, videoRouter);
+// use의 의미 -> 누군가 /user 경로로 접속하면 이 userRouter파일의 값을 사용하겠다는 의미 , 전역으로 쓰이는 미들웨어로 사용하는 use는 url을 안받았음, 여기서 설정한 주소값 + Router페이지의 요청메소드에 대한 라우팅 주소값을 합쳐서 user/(userRouter의 라우팅 주소값) 형태로 라우팅을 연결한다
+app.use(routes.api, apiRouter);
 
 export default app;//다른곳에서 내 파일을 import를 할때 app object들을 준다는 내용 , 여기서 default는 무슨 의미지??
