@@ -37,10 +37,10 @@ export const getUpload = (req,res) => {
 export const postUpload = async(req,res) => {
     const {
         body: { title, description},  //사용자가 업로드한 파일의 정보
-        file: { path }
+        file: { location }
     } = req; // req.body의 title,description 값을 가져와서 저장, file은 이제 필요없음
     const newVideo = await Video.create({
-        fileUrl: path, //사용자가 업로드한 정보를 토대로 새로 만드는 비디오스키마
+        fileUrl: location, //사용자가 업로드한 정보를 토대로 새로 만드는 비디오스키마
         title,
         description,
         creator: req.user.id

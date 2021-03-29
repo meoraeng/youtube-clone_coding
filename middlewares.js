@@ -1,9 +1,32 @@
 import multer from 'multer';
+import multerS3 from 'multer-s3';
+import aws from "aws-sdk";
 import routes from './routes';
 
-const multerVideo = multer({dest:'uploads/videos/'}); // dest -> destination
-//dest로 설정하면 자동으로 폴더가 만들어진다 ㄷㄷ 개신기해
-const multerAvatar = multer({dest:'uploads/avatars/'});
+const s3 = new aws.S3({
+  accessKeyId:process.env.AWS_ACCESS_KEY,
+  secretAccessKey:process.env.AWS_PRIVATE_KEY,
+  region: "ap-northeast-2"
+})
+
+const multerVideo = multer({
+  storage: multerS3({
+    s3,
+    acl: 'public-read', //access control list
+    bucket: 'jo-tube/video',
+  }),//다양한 스토리지를 multer에 설치가능, default는 node.js 파일시스템
+})
+const multerAvatar = multer({
+  storage: multerS3({
+    s3,
+    acl: 'public-read', //access control list
+    bucket: 'jo-tube/avatar'
+  })
+});
+
+export const uploadVideo = multerVideo.single('videoFile');//하나의 파일만 업로드 가능하다는 것을 의미
+//name part는(single 인수 스트링) html feild의 name이다
+export const uploadAvatar = multerAvatar.single('avatar');
 
 export const localsMiddleware = (req,res,next) => {
     res.locals.siteName = "Jotubue";
@@ -27,7 +50,3 @@ export const onlyPrivate = (req,res,next) => {
     res.redirect(routes.home);
   }
 }
-
-export const uploadVideo = multerVideo.single('videoFile');//하나의 파일만 업로드 가능하다는 것을 의미
-//name part는(single 인수 스트링) html feild의 name이다
-export const uploadAvatar = multerAvatar.single('avatar');
