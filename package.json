@@ -4,6 +4,7 @@
   "description": "Cloning Youtube with Vanilla and NodeJS",
   "author": "Kim Seonwoo",
   "dependencies": {
+    "@babel/cli": "^7.13.10",
     "@babel/core": "^7.13.10",
     "@babel/node": "^7.13.10",
     "@babel/polyfill": "^7.12.1",
@@ -35,11 +36,11 @@
     "dev:server": "nodemon --exec babel-node src/init.js",
     "dev:assets": "cd src && cross-env WEBPACK_ENV=development && webpack -w",
     "build:assets": "cd src && cross-env WEBPACK_ENV=production && webpack",
-    "build:server":"babel src --out-dir build --ignore src/static --ignore src/assets --ignore src/webpack.config.js",
+    "build:server": "babel src --out-dir build --ignore src/static --ignore src/assets --ignore src/webpack.config.js",
     "ngrok": "ngrok http 4000 1qDVJSwXGNEyjAGQHf9IbLPdiV7_ovyXvQBfsPoJGdCmM3g",
     "copyAll": "shx xcopy src\\static build\\static /d /e /h /c /y /i && xcopy src\\views build\\views /d /e /h /c /y /i",
     "build": "npm run build:server && npm run build:assets && npm run copyAll",
-    "start":"node build/init.js"
+    "start": "node build/init.js"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.5",
@@ -55,10 +56,10 @@
     "postcss": "^8.2.8",
     "postcss-loader": "^5.2.0",
     "prettier": "^2.2.1",
-    "shx": "^0.3.2",
     "sass": "^1.32.8",
     "sass-loader": "^11.0.1",
     "scss": "^0.2.4",
+    "shx": "^0.3.2",
     "webpack": "^5.26.3",
     "webpack-cli": "^4.5.0"
   }
