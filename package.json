@@ -39,7 +39,6 @@
     "ngrok": "ngrok http 4000 1qDVJSwXGNEyjAGQHf9IbLPdiV7_ovyXvQBfsPoJGdCmM3g",
     "copyAll": "shx xcopy src\\static build\\static /d /e /h /c /y /i && xcopy src\\views build\\views /d /e /h /c /y /i",
     "build": "npm run build:server && npm run build:assets && npm run copyAll",
-    "prebuild": "shx rd /s \"build\"",
     "start":"node build/init.js"
   },
   "devDependencies": {
