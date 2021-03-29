@@ -2,19 +2,8 @@
   "name": "nc_youtube_clone_coding",
   "version": "1.0.0",
   "description": "Cloning Youtube with Vanilla and NodeJS",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/joraeng/NC_Youtube_clone_coding.git"
-  },
   "author": "Kim Seonwoo",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/joraeng/NC_Youtube_clone_coding/issues"
-  },
-  "homepage": "https://github.com/joraeng/NC_Youtube_clone_coding#readme",
   "dependencies": {
-    "node": "^14.15.4",
     "@babel/core": "^7.13.10",
     "@babel/node": "^7.13.10",
     "@babel/polyfill": "^7.12.1",
@@ -71,9 +60,6 @@
     "sass-loader": "^11.0.1",
     "scss": "^0.2.4",
     "webpack": "^5.26.3",
-    "webpack-cli": "^4.5.0",
-  },
-  "browserslist": [
-    "cover 99.5%"
-  ]
+    "webpack-cli": "^4.5.0"
+  }
 }
