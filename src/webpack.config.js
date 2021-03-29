@@ -35,9 +35,9 @@ const config = {
                 plugins: [
                   [
                     'autoprefixer',
-                    // {
-                    //   browsers: "cover 99.5%"
-                    // },
+                    {
+                      browsers: "cover 99.5%"
+                    },
                   ]
                 ]
               }
