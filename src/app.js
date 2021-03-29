@@ -1,4 +1,3 @@
-//const express = require("express");
 import "core-js" ;
 import express from "express";  // bable test를 위해 require가 아닌 import로 express를 가져옴
 import morgan from "morgan";
@@ -7,6 +6,7 @@ import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import passport from "passport";
 import session from "express-session";
+import path from "path";
 import { localsMiddleware } from './middlewares';
 import userRouter from "./routers/userRouter"; // default로 export하지 않으면 이렇게 import해줘야함
 import videoRouter from "./routers/videoRouter";
@@ -27,9 +27,9 @@ app.use(function(req, res, next) {
 
 
 app.use( helmet({ contentSecurityPolicy: false }))//동영상이 안나와서 댓글따라 설정 바꿈
-app.set("view engine","pug"); // app.set ?
-app.use("/uploads", express.static('uploads')); //express.static이 뭐지?
-app.use('/static', express.static('static'));
+app.set("view engine","pug"); 
+app.set("views", path.join(__dirname, "views"));
+app.use('/static', express.static(path.join(__dirname,"static")));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));

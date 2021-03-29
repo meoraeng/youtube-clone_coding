@@ -2,6 +2,7 @@ node_modules
 package-lock.json
 uploads
 static
+build
 # 여기부턴 복붙
 
 # Logs
