@@ -41,7 +41,8 @@
     "ngrok": "ngrok http 4000 1qDVJSwXGNEyjAGQHf9IbLPdiV7_ovyXvQBfsPoJGdCmM3g",
     "copyAll": "shx cp -R src/static build && shx cp -R src/views build",
     "build": "npm run build:server && npm run build:assets && npm run copyAll",
-    "start": "node build/init.js"
+    "start": "node build/init.js",
+    "prestart": "npm run build"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.5",
