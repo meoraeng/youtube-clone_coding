@@ -1,6 +1,7 @@
 //home의 video 관련 기능들
 import routes from "../routes"; //default 로 export한 것을 import할때는 {}없이
 import Video from "../models/Video";
+import Comment from "../models/Comment";
 
 export const home = async(req,res) => { //니코ver. async/await설명 이해부족 
     try{ 
@@ -55,7 +56,7 @@ export const videoDetail = async(req,res) => {
         params: {id}
     } =req;
     try{
-    const video = await Video.findById(id).populate('creator');
+    const video = await Video.findById(id).populate('creator').populate('comments');
     res.render("videoDetail", {pageTitle: video.title ,video});//video == video:video와 같음
     }catch(error){
         console.log(error);
@@ -119,9 +120,32 @@ export const postRegisterView = async(req,res) => {
     res.status(200);
   }catch(error){
     res.status(400);
-    res.end();
   } finally{
     res.end();
   }
 }
+// Add Comment
 
+export const postAddComment = async(req,res) => {
+  const {
+    params: {id},
+    body: {comment},
+    user
+  } = req;
+  try{
+    const video = await Video.findById(id);
+    const newComment = await Comment.create({
+      text: comment,
+      creator: user.id,
+      creatorName: user.name
+    });
+    video.comments.push(newComment.id);
+    user.comments.push(newComment.id);
+    video.save();
+    user.save();
+  }catch(error){
+    res.status(400);
+  }finally {
+    res.end();
+  }
+}
