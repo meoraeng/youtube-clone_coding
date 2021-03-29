@@ -40,6 +40,7 @@
     "build:server": "babel src --out-dir build --ignore src/static --ignore src/assets --ignore src/webpack.config.js",
     "copyAll": "shx cp -R src/static build && shx cp -R src/views build",
     "build": "npm run build:server && npm run build:assets && npm run copyAll",
+    "heroku-prebuild":"npm install --dev",
     "start": "node build/init.js",
     "prestart": "npm run build"
   },

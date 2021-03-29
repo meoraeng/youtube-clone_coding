@@ -8,7 +8,7 @@ const OUTPUT_DIR = path.join(__dirname, "static");
 
 const config = {
   entry: ["@babel/polyfill",ENTRY_FILE],
-  mode: 'production',
+  // mode: 'production',
   module: {
     rules: [
       {
