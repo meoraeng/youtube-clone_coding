@@ -39,7 +39,7 @@
     "build:assets": "cd src && cross-env WEBPACK_ENV=production && webpack",
     "build:server": "babel src --out-dir build --ignore src/static --ignore src/assets --ignore src/webpack.config.js",
     "ngrok": "ngrok http 4000 1qDVJSwXGNEyjAGQHf9IbLPdiV7_ovyXvQBfsPoJGdCmM3g",
-    "copyAll": "shx xcopy src\\static build\\static /d /e /h /c /y /i && shx xcopy src\\views build\\views /d /e /h /c /y /i",
+    "copyAll": "shx cp -R src/static build && shx cp -R src/views build && shx cp -R src/resources build",
     "build": "npm run build:server && npm run build:assets && npm run copyAll",
     "start": "node build/init.js"
   },
