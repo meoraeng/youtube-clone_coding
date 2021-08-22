@@ -8,6 +8,8 @@
 [![MongoDB](https://img.shields.io/badge/mongodb-13AA52?logo=mongodb&logoColor=white&style=for-the-badge)](https://mongoosejs.com/) 
 [![Heroku](https://img.shields.io/badge/heroku-79589F?logo=heroku&logoColor=white&style=for-the-badge)](https://www.heroku.com/) 
 [![Aws](https://img.shields.io/badge/AWS_S3-E36509?logo=amazons3&logoColor=white&style=for-the-badge)](https://aws.amazon.com/ko/s3/)
+[![Webpack](https://img.shields.io/badge/WebPack-5299C8?logo=webpack&logoColor=white&style=for-the-badge)](https://webpack.js.org/)
+[![Babel](https://img.shields.io/badge/babel-F9DC3E?logo=babel&logoColor=black&style=for-the-badge)](https://webpack.js.org/)
 
 학습 목적으로 제작한 유튜브 클론코딩 사이트입니다.
 
