@@ -2,7 +2,7 @@
 
 
 [![Node.js](https://img.shields.io/badge/node->=14.0.0-339933?logo=nodedotjs&logoColor=white&style=for-the-badge)](https://nodejs.org/)
-[!][PUG](https://img.shields.io/badge/pug3.0.2-339933?logo=pug&logoColor=white&style=for-the-badge)](https://nodejs.org/)
+[![Pug](https://img.shields.io/badge/pug3.0.2-339933?logo=pug&logoColor=white&style=for-the-badge)](https://nodejs.org/)
 
 Cloning Youtube with Vanilla and NodeJS
 
