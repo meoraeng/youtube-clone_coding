@@ -2,19 +2,7 @@
 
 Cloning Youtube with Vanilla and NodeJS
 
-## Pages-Create&Styling:
-
-- [x] Home
-- [x] Join
-- [x] Login
-- [x] Logout
-- [x] Search
-- [x] User Detail
-- [x] Edit Profile
-- [x] Change Password
-- [x] Upload
-- [x] Video Detail
-- [x] Edit Video
-
-폰트는 나눔스퀘어 통일 --> Password에 사용될 특수 기호에 대한 폰트가 없어 텍스트가 보이지 않는 현상 발생 , password에 한해서 글꼴 변경 
-
+### Deploy Link
+> https://jo-tube.herokuapp.com/ 
+가끔 접속하는데 시간이 오래걸리거나 접속 오류가 있을 수 있습니다. 
+접속이 될 때 까지 새로고침 및 재접속 시도를 지속하면 5분 내로 들어가집니다 ..
