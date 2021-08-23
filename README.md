@@ -10,7 +10,7 @@
 [![Webpack](https://img.shields.io/badge/WebPack-5299C8?logo=webpack&logoColor=white&style=for-the-badge)](https://webpack.js.org/)
 [![Babel](https://img.shields.io/badge/babel-F9DC3E?logo=babel&logoColor=black&style=for-the-badge)](https://webpack.js.org/)
 
-학습 목적으로 제작한 유튜브 클론코딩 사이트입니다.
+Node.js 서버 개발 공부를 위해서 제작한 유튜브 클론코딩 사이트입니다.
 
 Heroku를 통해 배포되어 아래 링크를 통해 이용 가능합니다.  
 (가끔 접속하는데 시간이 오래걸리거나 접속 오류가 있을 수 있습니다.  새로고침 및 재접속 시도를 지속하면 5분 내로 들어가집니다)
