@@ -1,8 +1,7 @@
 # NC_Youtube_clone_coding
 
 
-[![Node.js](https://img.shields.io/badge/node->=14.0.0-339933?logo=nodedotjs&logoColor=white&style=for-the-badge)](https://nodejs.org/)  
-
+[![Node.js](https://img.shields.io/badge/node->=14.0.0-339933?logo=nodedotjs&logoColor=white&style=for-the-badge)](https://nodejs.org/)
 [![Pug](https://img.shields.io/badge/pug-A86454?logo=pug&logoColor=white&style=for-the-badge)](https://pugjs.org/) 
 [![Scss](https://img.shields.io/badge/scss-BF4080?logo=sass&logoColor=white&style=for-the-badge)](https://sass-lang.com/) 
 [![MongoDB](https://img.shields.io/badge/mongodb-13AA52?logo=mongodb&logoColor=white&style=for-the-badge)](https://mongoosejs.com/) 
